@@ -1,18 +1,28 @@
-export const Greeter = (name: string) => console.log(`Hello ${name}`); 
-
 export const mfList:any = [];
 
 export const addIFrame = (key:any) => {
-    mfList.push(key);
+    var item = mfList.find((i:string)=>i == key);
+    if(item){
 
-    let frame:any = document.getElementById(key);
+    }else{
+        mfList.push(key);
     
-    frame.onload = function() {
-        frame.contentWindow.frameId = key;
-        frame.contentWindow.addEventListener("frame-bus-event", (e:any)=>{
-            document.dispatchEvent(new CustomEvent("master-event", {detail: e.detail}));
-        });
-    };
+        let frame:any = document.getElementById(key);
+        
+        frame.onload = function() {
+            frame.contentWindow.frameId = key;
+            frame.contentWindow.addEventListener("frame-bus-event", (e:any)=>{
+                document.dispatchEvent(new CustomEvent("master-event", {detail: e.detail}));
+            });
+        };
+    }
+}
+
+export const removeIFrame = (key: any)=>{
+    var item = mfList.findIndex((i:string)=>i == key);
+    if(item!=-1){
+        mfList.splice(item, 1);
+    }
 }
 
 export const initBus = ()=>{

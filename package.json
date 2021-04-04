@@ -1,6 +1,6 @@
 {
-  "name": "molnarattila991",
-  "version": "1.0.11",
+  "name": "@molnarattila991/bus",
+  "version": "1.0.12",
   "description": "",
   "main": "index.js",
   "scripts": {
